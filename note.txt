@@ -1,0 +1,1 @@
+https://discord.com/oauth2/authorize?client_id=879062232099594261&permissions=2205280576&scope=bot%20identify%20guilds%20applications.commands&redirect_uri=0.0.0.0/api/callback&response_type=code
