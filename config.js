@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 module.exports = {
   Admins: ["UserID", "UserID"], //Admins of the bot
   ExpressServer: true,//If you wanted to make the website run or not
@@ -23,16 +21,16 @@ module.exports = {
     id: "Main",
     host: "lava.link",
     port: 80,
-    pass: "youshallnotpass", 
+    pass: "youshallnotpass",
   },
-  
+
   //Alternate Lavalink
   /*
   Lavalink: {
     id: "Main",
     host: "lava.sudhan.tech",
     port: 1234,
-    pass: "CodingWithSudhan", 
+    pass: "CodingWithSudhan",
   },
   */
 
