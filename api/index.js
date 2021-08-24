@@ -19,7 +19,7 @@ api.use("/", static(join(__dirname, "..", "assets")));
 
 //Handle Login and other stuff
 
-const session = require("cookie-session");
+const session = require("express-session");
 const DiscordStrategy = require("passport-discord").Strategy;
 const passport = require("passport");
 const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
@@ -44,9 +44,6 @@ passport.use(
 api.use(
   session({
     secret: config.CookieSecret,
-    cookie: {
-        maxAge: 60000 * 60 * 24
-    },
     resave: false,
     saveUninitialized: false,
   })
