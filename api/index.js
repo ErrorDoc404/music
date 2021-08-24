@@ -19,7 +19,7 @@ api.use("/", static(join(__dirname, "..", "assets")));
 
 //Handle Login and other stuff
 
-const session = require("express-session");
+const session = require("cookie-session");
 const DiscordStrategy = require("passport-discord").Strategy;
 const passport = require("passport");
 const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
