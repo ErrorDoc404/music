@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { static, Router } = require("express");
 const api = Router();
 const fs = require("fs");
