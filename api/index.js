@@ -1,7 +1,10 @@
+require('dotenv').config();
+
 const { static, Router } = require("express");
 const api = Router();
 const fs = require("fs");
 const { join } = require("path");
+const config = require("../config");
 
 const RoutesPath = join(__dirname, "Routes");
 
@@ -19,23 +22,15 @@ api.use("/", static(join(__dirname, "..", "assets")));
 const session = require("express-session");
 const DiscordStrategy = require("passport-discord").Strategy;
 const passport = require("passport");
-
-let config;
-try {
-  //Config for testing
-  config = require("../dev-config");
-} catch {
-  //Config for production
-  config = require("../config");
-}
+const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
 
 passport.use(
   new DiscordStrategy(
     {
       clientID: config.ClientID,
       clientSecret: config.ClientSecret,
-      callbackURL: config.Website + config.CallbackURL,
-      scope: config.Scopes.join(" "),
+      callbackURL: config.CallbackURL,
+      scope: scopes,
     },
     function (accessToken, refreshToken, profile, done) {
       //User logged in yay!
@@ -49,6 +44,9 @@ passport.use(
 api.use(
   session({
     secret: config.CookieSecret,
+    cookie: {
+        maxAge: 60000 * 60 * 24
+    },
     resave: false,
     saveUninitialized: false,
   })
@@ -76,5 +74,6 @@ passport.deserializeUser(function (obj, done) {
 });
 
 api.use("/", require("./routes"));
+api.use("/api", require("./Middlewares"));
 
 module.exports = api;

@@ -34,7 +34,7 @@
               height="30"
               class="d-inline-block align-text-top"
             />
-            Discord Music Bot
+            Karta Dharta Music Bot
           </a>
           <button
             class="navbar-toggler"
@@ -55,7 +55,7 @@
             </div>
             <a
               href="/dashboard"
-              class="btn btn-outline-success me-2"
+              class="btn btn-danger me-2"
               type="button"
             >
               Dashboard
@@ -97,10 +97,6 @@
             <div class="col-md-10 col-lg-8">
               <div class="header-section">
                 <h2 class="title">Exclusive <span>Features</span></h2>
-                <p class="description">
-                  There are many Features in discord music bot! Every awesome
-                  features of this bot has been described below check it out 😉
-                </p>
               </div>
             </div>
           </div>
@@ -180,6 +176,10 @@
   <style>
     body {
       background: var(--bs-gray-dark);
+      color: #fff;
+    }
+
+    a{
       color: #fff;
     }
 
@@ -293,6 +293,7 @@
       margin-top: 40px;
       background-color: #24252a;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
     }
 
     .section-features .single-service .part-1 {
@@ -315,6 +316,7 @@
 
     .section-features .single-service .part-2 {
       padding: 30px 40px 40px;
+      max-height: 120px;
     }
 
     .section-features .single-service .part-2 .description {
@@ -376,27 +378,17 @@
   </style>
   <script>
     $(document).ready(() => {
-      $.get("/api/info", (data) => {
-        //check api/routes.js
-        let url = `https://discord.com/oauth2/authorize?client_id=${
-          data.ClientID
-        }&permissions=${data.Permissions}&scope=${data.Scopes.join("%20")}&redirect_url=${data.Website}${data.CallbackURL}&response_type=code`;
-        
-        $("#hero").append(`<a href="${url}" class="btn btn-primary" type="button">Invite</a>
-            <a href="/dashboard" class="btn btn-outline-primary" type="button">Dashboard</a>`);
-      });
-
       $.get("/api/commands", (data) => {
         //same as above check it :eyes:
         data.commands.forEach((cmd) => {
           $("#commands-body").append(`
-<tr>
-  <th scope="row">${cmd.name}</th>
-  <td>${cmd.aliases ? cmd.aliases.join(", ") : "None"}</td>
-  <td>${cmd.usage ? cmd.usage : "None"}</td>
-  <td>${cmd.description ? cmd.description : "None"}</td>
-</tr>
-`);
+            <tr>
+              <th scope="row">${cmd.name}</th>
+              <td>${cmd.aliases ? cmd.aliases.join(", ") : "None"}</td>
+              <td>${cmd.usage ? cmd.usage : "None"}</td>
+              <td>${cmd.description ? cmd.description : "None"}</td>
+            </tr>
+          `);
         });
       });
     });

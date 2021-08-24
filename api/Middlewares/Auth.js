@@ -1,15 +1,17 @@
-let config;
-try {
-  //Config for testing
-  config = require("../../dev-config");
-} catch {
-  //Config for production
-  config = require("../../config");
-}
+const router = require('express').Router();
+const passport = require('passport');
 
-const Auth = (req, res, next) => {
-  if (!req.user) return res.redirect(config.CallbackURL);
-  else next();
-};
+router.get('/discord', passport.authenticate('discord'));
 
-module.exports = Auth;
+router.get('/discord/redirect', passport.authenticate('discord', {
+    failureRedirect: '/'
+}), function(req, res) {
+    res.redirect('http://localhost:3000/menu') // Successful auth
+});
+
+router.get('/', (req, res) => {
+  if(req.user) res.send(req.user);
+  else res.status(401).send({msg: `Unauthorized`});
+});
+
+module.exports = router;
