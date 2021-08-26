@@ -1,1 +1,1 @@
-worker: node index.js
+processor: npm run start
