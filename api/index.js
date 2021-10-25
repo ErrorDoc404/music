@@ -1,10 +1,16 @@
 require('dotenv').config();
-
+require('./strategies/discord');
+const path = require('path');
 const { static, Router } = require("express");
 const api = Router();
 const fs = require("fs");
 const { join } = require("path");
 const config = require("../config");
+const session = require("express-session");
+const passport = require('passport');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const MongoStore = require('connect-mongo');
 
 const RoutesPath = join(__dirname, "Routes");
 
@@ -15,39 +21,33 @@ fs.readdir(RoutesPath, (err, files) => {
   });
 });
 
-api.use("/", static(join(__dirname, "..", "assets")));
+// api.use("/", static(join(__dirname, "..", "assets")));
+const publicPath = path.join(__dirname, '../assets');
+api.use(static(publicPath));
 
 //Handle Login and other stuff
 
-const session = require("express-session");
-const DiscordStrategy = require("passport-discord").Strategy;
-const passport = require("passport");
-const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
+mongoose.connect(process.env.MONGOOSE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-passport.use(
-  new DiscordStrategy(
-    {
-      clientID: config.ClientID,
-      clientSecret: config.ClientSecret,
-      callbackURL: config.CallbackURL,
-      scope: scopes,
-    },
-    function (accessToken, refreshToken, profile, done) {
-      //User logged in yay!
-      process.nextTick(function () {
-        return done(null, profile);
-      });
-    }
-  )
-);
+api.use(cors({
+  origin: ['http://localhost'],
+  credentials: true,
+}))
 
-api.use(
-  session({
-    secret: config.CookieSecret,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+api.use(session({
+  secret: 'secret',
+  cookie: {
+    maxAge: 60000 * 60 * 1
+  },
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGOOSE_URL
+  }),
+}));
 
 api.use(passport.initialize());
 api.use(passport.session());

@@ -12,4 +12,8 @@ api.get("/", async (req, res) => {
   res.send({ user: req.user });
 });
 
+api.get('/guild/cache', async (req, res ) => {
+    res.send(client.guilds.cache);
+});
+
 module.exports = api;
