@@ -19,11 +19,14 @@ module.exports = {
      */
     run: async (client, message, args, { GuildDB }) => {
         let player = await client.Manager.get(message.guild.id);
-        if (!player) return client.sendTime(message.channel, "❌ | **Nothing is playing right now...**");
-        if (!message.member.voice.channel) return client.sendTime(message.channel, "❌ | **You must be in a voice channel to use this command!**");
-        if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return client.sendTime(message.channel, ":x: | **You must be in the same voice channel as me to use this command!**");
-        player.stop();
-        await message.react("✅");
+        let song = player.queue.current;
+        if(song.requester.id == message.author.id || message.member.hasPermission('ADMINISTRATOR')){
+          if (!player) return client.sendTime(message.channel, "❌ | **Nothing is playing right now...**");
+          if (!message.member.voice.channel) return client.sendTime(message.channel, "❌ | **You must be in a voice channel to use this command!**");
+          if (message.guild.me.voice.channel && message.member.voice.channel.id !== message.guild.me.voice.channel.id) return client.sendTime(message.channel, ":x: | **You must be in the same voice channel as me to use this command!**");
+          player.stop();
+          await message.react("✅");
+        }else return client.sendTime(message.channel, "❌ | **You can't do that!**");
     },
     SlashCommand: {
         /**
@@ -36,19 +39,22 @@ module.exports = {
         run: async (client, interaction, args, { GuildDB }) => {
             const guild = client.guilds.cache.get(interaction.guild_id);
             const member = guild.members.cache.get(interaction.member.user.id);
+            let player_intraction = await client.Manager.get(interaction.guild.id);
+            let song = player_intraction.queue.current;
+            if(interaction.member.user == song.requester.id){
+                if (!member.voice.channel) return client.sendTime(interaction, "❌ | **You must be in a voice channel to use this command.**");
+                if (guild.me.voice.channel && !guild.me.voice.channel.equals(member.voice.channel)) return client.sendTime(interaction, ":x: | **You must be in the same voice channel as me to use this command!**");
 
-            if (!member.voice.channel) return client.sendTime(interaction, "❌ | **You must be in a voice channel to use this command.**");
-            if (guild.me.voice.channel && !guild.me.voice.channel.equals(member.voice.channel)) return client.sendTime(interaction, ":x: | **You must be in the same voice channel as me to use this command!**");
+                const skipTo = interaction.data.options ? interaction.data.options[0].value : null;
 
-            const skipTo = interaction.data.options ? interaction.data.options[0].value : null;
+                let player = await client.Manager.get(interaction.guild_id);
 
-            let player = await client.Manager.get(interaction.guild_id);
-
-            if (!player) return client.sendTime(interaction, "❌ | **Nothing is playing right now...**");
-            console.log(interaction.data);
-            if (skipTo !== null && (isNaN(skipTo) || skipTo < 1 || skipTo > player.queue.length)) return client.sendTime(interaction, "❌ | **Invalid number to skip!**");
-            player.stop(skipTo);
-            client.sendTime(interaction, "**Skipped!**");
+                if (!player) return client.sendTime(interaction, "❌ | **Nothing is playing right now...**");
+                console.log(interaction.data);
+                if (skipTo !== null && (isNaN(skipTo) || skipTo < 1 || skipTo > player.queue.length)) return client.sendTime(interaction, "❌ | **Invalid number to skip!**");
+                player.stop(skipTo);
+                client.sendTime(interaction, "**Skipped!**");
+            } else return client.sendTime(interaction, "❌ | **You can't do that**");
         },
     },
 };
