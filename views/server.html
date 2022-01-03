@@ -1,286 +1,217 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Server</title>
-    <link rel="shortcut icon" href="/logo.gif" type="image/gif" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
-    />
-  </head>
-  <body>
-    <section class="main">
-      <!--Main Navigation-->
-      <header>
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse">
-          <div class="position-sticky">
-            <div class="list-group list-group-flush mx-3 mt-4">
-              <a
-                href="/dashboard"
-                class="list-group-item list-group-item-action py-2 ripple"
-                aria-current="true"
-              >
-                <i class="fas fa-tachometer-alt fa-fw me-3"></i
-                ><span>Main dashboard</span>
-              </a>
-              <a
-                href="/servers"
-                class="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i class="fas fa-server fa-fw me-3"></i
-                ><span>Manage Servers</span>
-              </a>
-              <a
-                href="/logout"
-                class="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i class="fas fa-sign-out-alt fa-fw me-3"></i
-                ><span>Logout</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-        <!-- Sidebar -->
 
-        <!-- Navbar -->
-        <nav
-          id="main-navbar"
-          class="navbar navbar-expand-lg navbar-light fixed-top"
-        >
-          <!-- Container wrapper -->
-          <div class="container-fluid">
-            <!-- Toggle button -->
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#sidebarMenu"
-              aria-controls="sidebarMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onclick="function re(){ let r = $('#sidebarMenu'); if(r.hasClass('collapse'))r.removeClass('collapse');else r.addClass('collapse')}re()"
-            >
-              <i class="fas fa-bars"></i>
-            </button>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-            <!-- Brand -->
-            <a class="navbar-brand text-white" href="/">
-              <img src="/logo.gif" height="40" alt="" loading="lazy" />
-              Dashboard - Manage Server
-            </a>
-            <div>
-              <h1 class="server-name"></h1>
-            </div>
-          </div>
-        </nav>
-        <!-- Navbar -->
-      </header>
-      <!--Main Navigation-->
+  <title>Inner Page - Selecao Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-      <!--Main layout-->
-      <main style="margin-top: 58px">
-        <div class="container pt-4">
-          <!--Section: Manage Server -->
-          <section>
-            <h1>Manage server</h1>
-            <div class="row">
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-danger" id="songInQueue">0</h3>
-                        <p class="mb-0">Song in queue</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-music text-danger fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-success" id="songLoop"></h3>
-                        <p class="mb-0">Song Loop</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-redo text-success fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-warning" id="queueLoop"></h3>
-                        <p class="mb-0">Queue Loop</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-sync text-warning fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-info" id="prefix">&gt;</h3>
-                        <p class="mb-0">Prefix</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-robot text-info fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <!-- Favicons -->
+  <link href="/logo.gif" rel="icon" type="image/gif">
 
-            <div class="container text-center" id="song-info">
-              <h1>Song info</h1>
-              <p>Now playing: <span id="now-playing"></span></p>
-              <br />
-              <p>Duration</p>
-              <p id="duration"></p>
-            </div>
-          </section>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="../vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+  <link href="../vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/music.css" rel="stylesheet">
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+  <!-- <script src="https://unpkg.com/vue"></script> -->
+
+  <!-- =======================================================
+  * Template Name: Selecao - v2.3.0
+  * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <div id="app-server">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center ">
+      <div class="container d-flex align-items-center">
+
+        <div class="logo mr-auto">
+          <h1 class="text-light"><a href="index.html">Karta Dharta</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
-      </main>
-      <!--Main layout-->
-    </section>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-  </body>
-  <style>
-    body {
-      background: var(--bs-gray-dark);
-      color: #fff;
-      overflow-x: hidden;
-    }
 
-    .card {
-      color: black;
-    }
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li class="active"><a href="#hero">Dashboard</a></li>
+            <li><a href="/info">Info</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/servers">Server</a></li>
+            <li><a href="/command">Command</a></li>
+            <li class="btn active"><a href="/logout">Logout</a></li>
 
-    @media (min-width: 991.98px) {
-      main {
-        padding-left: 240px;
-      }
-    }
+          </ul>
+        </nav><!-- .nav-menu -->
 
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      padding: 58px 0 0; /* Height of navbar */
-      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-      width: 240px;
-      z-index: 600;
-    }
+      </div>
+    </header><!-- End Header -->
 
-    @media (max-width: 991.98px) {
-      .sidebar {
-        width: 100%;
-      }
-    }
-    .sidebar .active {
-      border-radius: 5px;
-      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
-    }
+    <main id="main">
 
-    .sidebar-sticky {
-      position: relative;
-      top: 0;
-      height: calc(100vh - 48px);
-      padding-top: 0.5rem;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
 
-    #song-info span {
-      color: #5867dd;
-      text-decoration: none;
-      cursor: pointer;
-    }
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>{{ user.discordTag }}</h2>
+            <ol>
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li>Bot Details</li>
+            </ol>
+          </div>
 
-    #song-info span:hover {
-      color: #34bfa3;
-    }
+        </div>
+      </section><!-- End Breadcrumbs -->
 
-    .footer {
-      position: fixed;
-      bottom: 0;
-      background: #192027;
-      text-align: center;
-      padding: 32px 0;
-      width: 85%;
-      overflow: hidden;
-    }
+      <section class="inner-page portfolio-details">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between px-md-1">
+                    <div>
+                      <h3 class="text-danger" id="songInQueue">0</h3>
+                      <p class="mb-0">Song in queue</p>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="fas fa-music text-danger fa-3x"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between px-md-1">
+                    <div>
+                      <h3 class="text-success" id="songLoop"></h3>
+                      <p class="mb-0">Song Loop</p>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="fas fa-redo text-success fa-3x"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between px-md-1">
+                    <div>
+                      <h3 class="text-warning" id="queueLoop"></h3>
+                      <p class="mb-0">Queue Loop</p>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="fas fa-sync text-warning fa-3x"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between px-md-1">
+                    <div>
+                      <h3 class="text-info" id="prefix">&gt;</h3>
+                      <p class="mb-0">Prefix</p>
+                    </div>
+                    <div class="align-self-center">
+                      <i class="fas fa-robot text-info fa-3x"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    .footer p {
-      margin: 0;
-      line-height: 26px;
-      font-size: 15px;
-      color: #999;
-    }
+          <main class="player">
+              <div class="header">
+                  <a href="#" class="button">
+                      <i class="fas fa-music" aria-hidden="true"></i>
+                      <span class="sr-only">menu bar</span>
+                  </a>
+                  <p>Now Playing</p>
+                  <a href="#" class="button">
+                      <i class="fas fa-music" aria-hidden="true"></i>
+                      <span class="sr-only">Search</span>
+                  </a>
+              </div><!--  header  -->
+              <img id="music-image"></img><!--  art  -->
+              <div class="info">
+                  <h1><span id="now-playing"></span></h1>
+                  <!-- <p>Elanor Rigby</p> -->
+              </div><!--  info  -->
+              <div class="prog">
+                  <div class="prog-time">
+                      <p id="duration-run"></p>
+                      <p id="duration-end"></p>
+                  </div>
+                  <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div><!--  progress  -->
+          </main>
 
-    .footer p a {
-      color: #5867dd;
-      text-decoration: none;
-    }
 
-    .footer p a:hover {
-      color: #34bfa3;
-    }
+        </div>
+      </section>
 
-    ::-webkit-scrollbar {
-      width: 15px;
-    }
+    </main><!-- End #main -->
+  </div>
+  <!-- ======= Footer ======= -->
+  <!-- <footer id="footer">
+    <div class="container">
+      <h3>Karta Dharta</h3>
+    </div>
+  </footer> -->
+  <!-- End Footer -->
 
-    ::-webkit-scrollbar-track {
-      background: #192027;
-    }
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
 
-    ::-webkit-scrollbar-thumb {
-      background: #5867dd;
-      border-radius: 20px;
-    }
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../vendor/venobox/venobox.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+  <script src="https://kit.fontawesome.com/7d35781f0a.js" crossorigin="anonymous"></script>
+  <!-- <script src="../vue/dashboard.js"></script> -->
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #414ca1;
-    }
-  </style>
+  <!-- Template Main JS File -->
+  <script src="../js/main.js"></script>
+  <script src="../js/music.js"></script>
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
   <script>
     $(document).ready(() => {
       $.get("/api/user", (data) => {
@@ -308,18 +239,19 @@
         $("#songLoop").text(data.songsLoop);
         $("#queueLoop").text(data.queueLoop);
         $("#prefix").text(data.prefix);
-        $("#now-playing").text(
-          data.nowPlaying ? data.nowPlaying.title : "Nothing playing"
-        );
-        if (data.position)
-          $("#duration").html(
-            `${data.position}<span> ${data.bar} </span>${data.maxDuration}`
-          );
-        else
-          $("#duration").html(
-            `<span> Nothing is playing right now, Add some songs in discord? </span>`
-          );
+        $("#now-playing").text(data.nowPlaying ? data.nowPlaying.title : "nothing is playing");
+        if(data.nowPlaying){
+          $("#music-image").attr("src","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROuBNBcOFFjXIkz4EkF_AyxysJil8Vldwb-Q&usqp=CAU");
+          $("#music-image").attr("class","art");
+        }
+        if (data.position){
+          $("#duration-run").html(`${data.position}`);
+          $("#duration-end").html(`${data.maxDuration}`);
+        }
       });
     });
   </script>
+
+</body>
+
 </html>

@@ -1,274 +1,159 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="shortcut icon" href="/logo.gif" type="image/gif" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css"
-    />
-  </head>
-  <body>
-    <section class="main">
-      <!--Main Navigation-->
-      <header>
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar">
-          <div class="position-sticky">
-            <div class="list-group list-group-flush mx-3 mt-4">
-              <a
-                href="/dashboard"
-                class="list-group-item list-group-item-action py-2 ripple active"
-                aria-current="true"
-              >
-                <i class="fas fa-tachometer-alt fa-fw me-3"></i
-                ><span>Main dashboard</span>
-              </a>
-              <a
-                href="/servers"
-                class="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i class="fas fa-server fa-fw me-3"></i
-                ><span>Manage Servers</span>
-              </a>
-              <a
-                href="/logout"
-                class="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i class="fas fa-sign-out-alt fa-fw me-3"></i
-                ><span>Logout</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-        <!-- Sidebar -->
 
-        <!-- Navbar -->
-        <nav
-          id="main-navbar"
-          class="navbar navbar-expand-lg navbar-light fixed-top"
-        >
-          <!-- Container wrapper -->
-          <div class="container-fluid">
-            <!-- Toggle button -->
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-mdb-toggle="collapse"
-              data-mdb-target="#sidebarMenu"
-              aria-controls="sidebarMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onclick="function re(){ let r = $('#sidebarMenu'); if(r.hasClass('collapse'))r.removeClass('collapse');else r.addClass('collapse')}re()"
-            >
-              <i class="fas fa-bars"></i>
-            </button>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-            <!-- Brand -->
-            <a class="navbar-brand text-white" href="/">
-              <img src="/logo.gif" height="40" alt="" loading="lazy" />
-              Dashboard
-            </a>
-          </div>
-        </nav>
-        <!-- Navbar -->
-      </header>
-      <!--Main Navigation-->
+  <title>Inner Page - Selecao Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-      <!--Main layout-->
-      <main style="margin-top: 58px">
-        <div class="container pt-4">
-          <!--Section: Main-->
-          <section>
-            <h1>Bot Details</h1>
-            <div class="row">
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-danger" id="commands">-</h3>
-                        <p class="mb-0">Commands ran</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-rocket text-danger fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-success" id="users">-</h3>
-                        <p class="mb-0">Users</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="far fa-user text-success fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-warning" id="guilds">-</h3>
-                        <p class="mb-0">Servers</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-server text-warning fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div>
-                        <h3 class="text-info" id="songs">-</h3>
-                        <p class="mb-0">Songs played</p>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fas fa-music text-info fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+  <!-- Favicons -->
+  <link href="/logo.gif" rel="icon" type="image/gif">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+  <link href="vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src="https://unpkg.com/vue"></script>
+
+  <!-- =======================================================
+  * Template Name: Selecao - v2.3.0
+  * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <div id="app-dashboard">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center ">
+      <div class="container d-flex align-items-center">
+
+        <div class="logo mr-auto">
+          <h1 class="text-light"><a href="index.html">Karta Dharta</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
-      </main>
-      <!--Main layout-->
-    </section>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
-  </body>
-  <style>
-    body {
-      background: var(--bs-gray-dark);
-      color: #fff;
-      overflow-x: hidden;
-    }
 
-    @media (min-width: 991.98px) {
-      main {
-        padding-left: 240px;
-      }
-    }
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li class="active"><a href="#hero">Dashboard</a></li>
+            <li><a href="/info">Info</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/servers">Server</a></li>
+            <li><a href="/command">Command</a></li>
+            <li class="btn active"><a href="/logout">Logout</a></li>
 
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      padding: 58px 0 0; /* Height of navbar */
-      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-      width: 240px;
-      z-index: 600;
-    }
+          </ul>
+        </nav><!-- .nav-menu -->
 
-    @media (max-width: 991.98px) {
-      .sidebar {
-        width: 100%;
-      }
-    }
-    .sidebar .active {
-      border-radius: 5px;
-      box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
-    }
+      </div>
+    </header><!-- End Header -->
 
-    .sidebar-sticky {
-      position: relative;
-      top: 0;
-      height: calc(100vh - 48px);
-      padding-top: 0.5rem;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+    <main id="main">
 
-    .card {
-      color: black;
-    }
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
 
-    .footer {
-      position: absolute;
-      bottom: 0;
-      background: #192027;
-      text-align: center;
-      padding: 32px 0;
-      width: 85%;
-    }
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>{{ user.discordTag }}</h2>
+            <ol>
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li>Guilds</li>
+            </ol>
+          </div>
 
-    .footer p {
-      margin: 0;
-      line-height: 26px;
-      font-size: 15px;
-      color: #999;
-    }
+        </div>
+      </section><!-- End Breadcrumbs -->
 
-    .footer p a {
-      color: #5867dd;
-      text-decoration: none;
-    }
+      <section class="inner-page portfolio-details">
+        <div class="container">
+          <div class="card-body all-icons">
+            <div class="row">
+              <div id="servers" class="flex"></div>
+              <div class="col-lg-4 col-md-4 col-sm-6" v-for="guild in guilds" v-if="guild.hasPerms">
+                <div class="card p-4 mt-3">
+                  <div class="first">
+                    <h6 class="heading"><p class="text-primary">{{guild.name}}</p></h6>
+                  </div>
+                  <div class="second d-flex flex-row mt-2">
+                    <div class="image mr-3" v-if="guild.icon"> <img v-bind:src="'https://cdn.discordapp.com/icons/'+guild.id+'/'+guild.icon+'.webp'" class="rounded-circle" width="60" /> </div>
+                    <div class="image mr-3" v-else> <img src="https://cdn.logojoy.com/wp-content/uploads/20210422095037/discord-mascot.png" class="rounded-circle" width="60" /> </div>
+                    <div class="">
+                      <div class="d-flex flex-row mb-1"> Watching
+                        Guild
+                      </div>
+                      <div v-for="data in cache">
+                        <div v-if="guild.inGuild && data.id === guild.id"> <button class="btn btn-outline-primary btn-sm px-2">{{data.channels.length}} Channels</button> <button class="btn btn-outline-primary btn-sm px-2">{{data.members.length}} Members</button> </div>
+                      </div>
+                      <div v-if="guild.inGuild === false"> <button class="btn btn-outline-primary btn-sm px-2">Not in Guild</button> </div>
+                    </div>
+                  </div>
+                  <hr class="line-color">
+                  <div class="third mt-4" v-if="guild.inGuild">
+                    <a v-bind:href="'/server/'+guild.id">
+                      <button class="btn btn-warning btn-block">
+                        <i class="fa fa-clock-o"></i> Go to Dashboard
+                      </button>
+                    </a>
+                  </div>
+                  <div class="third mt-4" v-else>
+                    <a v-bind:href="'https://discord.com/oauth2/authorize?client_id=882298401998389261&permissions=2205280576&scope=bot%20identify%20guilds%20applications.commands&redirect_url=./api/auth/discord/redirect&response_type=code&guild_id='+guild.id">
+                    <button class="btn btn-primary btn-block">
+                      <i class="fa fa-clock-o"></i> Add Bot
+                    </button>
+                  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    .footer p a:hover {
-      color: #34bfa3;
-    }
+    </main><!-- End #main -->
+  </div>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Karta Dharta</h3>
+    </div>
+  </footer><!-- End Footer -->
 
-    ::-webkit-scrollbar {
-      width: 15px;
-    }
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
 
-    ::-webkit-scrollbar-track {
-      background: #192027;
-    }
+  <!-- Vendor JS Files -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="vendor/php-email-form/validate.js"></script>
+  <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="vendor/venobox/venobox.min.js"></script>
+  <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="vendor/aos/aos.js"></script>
+  <script src="vue/dashboard.js"></script>
 
-    ::-webkit-scrollbar-thumb {
-      background: #5867dd;
-      border-radius: 20px;
-    }
+  <!-- Template Main JS File -->
+  <script src="js/main.js"></script>
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #414ca1;
-    }
-  </style>
-  <script>
-    $(document).ready(() => {
-      var socket = io();
-      socket.emit("dashboard");
-      socket.on("dashboard", (data) => {
-        $("#commands").text(data.commands);
-        $("#users").text(data.users);
-        $("#songs").text(data.songs);
-        $("#guilds").text(data.guilds);
-      });
-    });
-  </script>
+</body>
+
 </html>

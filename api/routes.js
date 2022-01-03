@@ -41,6 +41,20 @@ api.get("/dashboard", Auth, (req, res) => {
     res.redirect('/api/auth/discord');
 });
 
+api.get("/info", Auth, (req, res) => {
+  if(req.user)
+    res.sendFile(join(__dirname, "..", "views", "info.html"));
+  else
+    res.redirect('/api/auth/discord');
+});
+
+api.get("/profile", Auth, (req, res) => {
+  if(req.user)
+    res.sendFile(join(__dirname, "..", "views", "profile.html"));
+  else
+    res.redirect('/api/auth/discord');
+});
+
 api.get("/servers", Auth, (req, res) => {
   if(req.user)
     res.sendFile(join(__dirname, "..", "views", "servers.html"));
@@ -48,9 +62,16 @@ api.get("/servers", Auth, (req, res) => {
     res.redirect('/api/auth/discord');
 });
 
-api.get("/servers/:id", Auth, (req, res) => {
+api.get("/command", Auth, (req, res) => {
+  if(req.user)
+    res.sendFile(join(__dirname, "..", "views", "command.html"));
+  else
+    res.redirect('/api/auth/discord');
+});
+
+api.get("/server/:id", Auth, (req, res) => {
   if (!req.user.guilds.find((x) => x.id == req.params.id))
-    return res.redirect("/servers");
+    return res.redirect("/dashboard");
   res.sendFile(join(__dirname, "..", "views", "server.html"));
 });
 
