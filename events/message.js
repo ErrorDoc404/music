@@ -1,13 +1,12 @@
-/**
- *
- * @param {require("../structures/DiscordMusicBot")} client
- * @param {require("discord.js").Message} message
- * @returns {void} aka: nothing ;-;
- */
+
+const GuildConfig = require("../api/database/schemas/GuildConfig");
+const client = require("../structures/DiscordMusicBot");
+const message = require("discord.js").Message;
 
 module.exports = async (client, message) => {
   if (message.author.bot || message.channel.type === "dm") return;
-  let prefix = client.config.DefaultPrefix;
+  const serverGuildConfig = await GuildConfig.findOne({guildId: message.guild.id});
+  let prefix = serverGuildConfig.prefix;
 
   let GuildDB = await client.GetGuild(message.guild.id);
   if (GuildDB && GuildDB.prefix) prefix = GuildDB.prefix;
@@ -52,15 +51,15 @@ module.exports = async (client, message) => {
           .permissionsFor(message.member)
           .has(cmd.permissions.member)) ||
       (cmd.permissions &&
-        GuildDB.DJ &&
+        GuildDB.djRole &&
         !message.channel
           .permissionsFor(message.member)
           .has(["ADMINISTRATOR"]) &&
-        !message.member.roles.cache.has(GuildDB.DJ))
+        !message.member.roles.cache.has(GuildDB.djRole))
     )
       return client.sendError(
         message.channel,
-        "Missing Permissions!" + GuildDB.DJ
+        "Missing Permissions!" + GuildDB.djRole
           ? " You need the `DJ` role to access this command."
           : ""
       );

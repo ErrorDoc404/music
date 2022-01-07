@@ -72,7 +72,13 @@ api.get("/command", Auth, (req, res) => {
 api.get("/server/:id", Auth, (req, res) => {
   if (!req.user.guilds.find((x) => x.id == req.params.id))
     return res.redirect("/dashboard");
-  res.sendFile(join(__dirname, "..", "views", "server.html"));
+  res.sendFile(join(__dirname, "..", "views", "music.html"));
+});
+
+api.get("/server/:id/music", Auth, (req, res) => {
+  if (!req.user.guilds.find((x) => x.id == req.params.id))
+    return res.redirect("/dashboard");
+  res.sendFile(join(__dirname, "..", "views", "music.html"));
 });
 
 api.get("/api/info", (req, res) => {

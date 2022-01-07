@@ -9,6 +9,7 @@ const path = require("path");
 const Express = require("express");
 const Logger = require("./Logger");
 const prettyMilliseconds = require("pretty-ms");
+const GuildConfig = require("../api/database/schemas/GuildConfig");
 
 //Class extending Stuff
 require("discordjs-activity"); //Epic Package, For more details: https://www.npmjs.com/package/discordjs-activity
@@ -23,10 +24,7 @@ class DiscordMusicBot extends Client {
     this.CommandsRan = 0;
     this.SongsPlayed = 0;
 
-    this.database = {
-      //Saved at jsoning node_modules directory, DOCS: https://jsoning.js.org/
-      guild: new Jsoning("guild.json"), //Server Config
-    };
+    this.database = {};
     this.logger = new Logger(path.join(__dirname, "..", "Logs.log"));
 
     try {
@@ -215,10 +213,8 @@ class DiscordMusicBot extends Client {
 
   async GetGuild(GuildID) {
     return new Promise(async (res, rej) => {
-      let guild = await this.database.guild
-        .get(GuildID)
-        .catch((err) => rej(err));
-      res(guild);
+      const findGuildConfig = await GuildConfig.findOne({guildId: GuildID });
+      res(findGuildConfig);
     });
   }
 

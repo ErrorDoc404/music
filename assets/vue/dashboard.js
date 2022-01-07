@@ -1,33 +1,17 @@
+import Router from 'vue-router'
+
+Vue.use(Router)
+
 const index = new Vue({
   el: '#app-dashboard',
   data: {
-    user: {
-      _id: null,
-      discordId: null,
-      discordTag: null,
-      avatar: null,
-      guilds: null
-    },
-    guilds: [],
-    cache: []
+    modules: null,
   },
   created () {
-    fetch('/api/auth')
+    fetch('/api/module')
       .then(res => res.json())
       .then(json => {
-        this.user = json
-      });
-
-    fetch('/api/user')
-      .then(res => res.json())
-      .then(json => {
-        this.guilds = json.user.guilds
-    });
-
-    fetch('/api/user/guild/cache')
-      .then(res => res.json())
-      .then(json => {
-        this.cache = json
+        this.modules = json
     });
   }
 })

@@ -7,6 +7,7 @@ api.get("/", async (req, res) => {
   req.user.guilds.map((g) => {
     g.hasPerms = new Permissions(g.permissions).has("MANAGE_GUILD", true);
     g.inGuild = client.guilds.cache.has(g.id);
+    g.client_id = client.user;
     return g;
   });
   res.send({ user: req.user });

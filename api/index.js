@@ -29,7 +29,8 @@ api.use(static(publicPath));
 
 mongoose.connect(process.env.MONGOOSE_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 api.use(cors({
@@ -58,7 +59,7 @@ api.get(
     failureRedirect: "/",
   }),
   function (req, res) {
-    res.redirect("/dashboard");
+    res.redirect("/servers");
   }
 );
 
