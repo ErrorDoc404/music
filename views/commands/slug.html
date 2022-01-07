@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>KD - Commands</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/logo.gif" rel="icon" type="image/gif">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="../vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../vendor/line-awesome/css/line-awesome.min.css" rel="stylesheet">
+  <link href="../vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <script src="https://unpkg.com/vue"></script>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+  <!-- <script src="https://unpkg.com/vue"></script> -->
+
+  <!-- =======================================================
+  * Template Name: Selecao - v2.3.0
+  * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+  <div id="app-dashboard">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center ">
+      <div class="container d-flex align-items-center">
+
+        <div class="logo mr-auto">
+          <h1 class="text-light"><a href="index.html">Karta Dharta</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li><a href="#hero">Dashboard</a></li>
+            <li><a href="/info">Info</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/command">Command</a></li>
+            <li class="btn active"><a href="/logout">Logout</a></li>
+
+          </ul>
+        </nav><!-- .nav-menu -->
+
+      </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+
+      <!-- ======= Breadcrumbs ======= -->
+      <section class="breadcrumbs">
+        <div class="container">
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h2 class="server-name"></h2>
+            <ol>
+              <li><a href="/dashboard" id="dashboardid">Dashboard</a></li>
+              <li>Commands</li>
+              <li>Aliases</li>
+            </ol>
+          </div>
+
+        </div>
+      </section><!-- End Breadcrumbs -->
+
+      <section id="command" class="services">
+        <div class="container">
+
+          <div class="section-title" data-aos="zoom-out">
+            <h2>COMMANDS</h2>
+            <p id="aliases"></p>
+          </div>
+
+          <div>
+            <h4>Description</h4>
+            <span class="ml-5" id="description"></span>
+          </div>
+
+          <div class="mt-4">
+            <h4>Permissions</h4>
+            <span id="permissions"></span>
+          </div>
+
+          <div class="mt-4">
+            <h4>Aliases</h4>
+            <span id="als"></span>
+          </div>
+
+        </div>
+      </section>
+
+
+    </main><!-- End #main -->
+  </div>
+  <!-- ======= Footer ======= -->
+  <!-- <footer id="footer">
+    <div class="container">
+      <h3>Karta Dharta</h3>
+    </div>
+  </footer> -->
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../vendor/venobox/venobox.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+  <script src="https://kit.fontawesome.com/7d35781f0a.js" crossorigin="anonymous"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../js/main.nav.js"></script>
+  <script src="../js/music.js"></script>
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script>
+  $(document).ready(() => {
+    var aliases = window.location.pathname.split("/")[2];
+    var url = `/api/commands/${aliases}`;
+    $.get(url, (data) => {
+      $("#aliases").html(data.name);
+      $("#description").html(data.description);
+      data.permissions.channel.forEach((cmd) => {
+        $("#permissions").append(`<li class="ml-5">${cmd}</li>`);
+      });
+      data.aliases.forEach((cmd) => {
+        $("#als").append(`<li class="ml-5">${cmd}</li>`);
+      });
+    });
+  });
+  </script>
+  <style>
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: #000;
+    }
+  </style>
+</body>
+
+</html>

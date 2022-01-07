@@ -36,7 +36,7 @@ api.get("/", (req, res) => {
 
 api.get("/dashboard", Auth, (req, res) => {
   if(req.user)
-    res.sendFile(join(__dirname, "..", "views", "dashboard.html"));
+    res.sendFile(join(__dirname, "..", "views", "music.html"));
   else
     res.redirect('/api/auth/discord');
 });
@@ -64,7 +64,14 @@ api.get("/servers", Auth, (req, res) => {
 
 api.get("/command", Auth, (req, res) => {
   if(req.user)
-    res.sendFile(join(__dirname, "..", "views", "command.html"));
+    res.sendFile(join(__dirname, "..", "views/commands", "index.html"));
+  else
+    res.redirect('/api/auth/discord');
+});
+
+api.get("/command/:slug", Auth, (req, res) => {
+  if(req.user)
+    res.sendFile(join(__dirname, "..", "views/commands", "slug.html"));
   else
     res.redirect('/api/auth/discord');
 });
