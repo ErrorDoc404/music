@@ -23,7 +23,9 @@ fs.readdir(RoutesPath, (err, files) => {
 
 // api.use("/", static(join(__dirname, "..", "assets")));
 const publicPath = path.join(__dirname, '../assets');
+const certPath = path.join(__dirname, '../.well-known');
 api.use(static(publicPath));
+api.use(static(certPath));
 
 //Handle Login and other stuff
 
